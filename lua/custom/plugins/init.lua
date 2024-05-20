@@ -30,12 +30,32 @@ return {
       lspconfig.dockerls.setup {
         capabilities = capabilities,
       }
-      lspconfig.grammarly.setup {
-        capabilities = capabilities,
-      }
       lspconfig.perlpls.setup {
         capabilities = capabilities,
       }
+      --      lspconfig.ltex.setup {
+      --        capabilities = capabilities,
+      --      }
+      lspconfig.ltex.setup {
+        settings = {
+          ltex = {
+            language = 'en',
+            additionalRules = {
+              languageModel = '~/.config/language-models/ngrams/',
+            },
+          },
+        },
+      }
+    end,
+  },
+  {
+    'nanozuki/tabby.nvim',
+    event = 'VimEnter',
+    dependencies = 'nvim-tree/nvim-web-devicons',
+    config = function()
+      require('tabby.tabline').use_preset('active_wins_at_tail', {
+        nerdfont = true,
+      })
     end,
   },
 }

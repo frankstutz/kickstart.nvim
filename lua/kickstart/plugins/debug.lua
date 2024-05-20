@@ -84,6 +84,35 @@ return {
     dap.listeners.before.event_terminated['dapui_config'] = dapui.close
     dap.listeners.before.event_exited['dapui_config'] = dapui.close
 
+    -- Bash
+    dap.adapters.bashdb = {
+      type = 'executable',
+      command = vim.fn.stdpath 'data' .. '/mason/packages/bash-debug-adapter/bash-debug-adapter',
+      name = 'bashdb',
+    }
+
+    dap.configurations.sh = {
+      {
+        type = 'bashdb',
+        request = 'launch',
+        name = 'Launch file',
+        showDebugOutput = true,
+        pathBashdb = vim.fn.stdpath 'data' .. '/mason/packages/bash-debug-adapter/extension/bashdb_dir/bashdb',
+        pathBashdbLib = vim.fn.stdpath 'data' .. '/mason/packages/bash-debug-adapter/extension/bashdb_dir',
+        trace = true,
+        file = '${file}',
+        program = '${file}',
+        cwd = '${workspaceFolder}',
+        pathCat = 'cat',
+        pathBash = '/usr/local/bin/bash',
+        pathMkfifo = 'mkfifo',
+        pathPkill = 'pkill',
+        args = {},
+        env = {},
+        terminalKind = 'integrated',
+      },
+    }
+
     -- Install golang specific config
     require('dap-go').setup()
   end,
