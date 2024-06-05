@@ -45,6 +45,11 @@ vim.api.nvim_set_keymap('n', '<leader>tmn', ':+tabmove<CR>', { noremap = true, d
 -- Make line numbers default
 vim.opt.number = true
 
+-- List Menus
+vim.api.nvim_set_keymap('n', '<leader>lp', ':LspInfo<CR>', { noremap = true, desc = 'LSP Info' })
+vim.api.nvim_set_keymap('n', '<leader>la', ':Lazy<CR>', { noremap = true, desc = 'Lazy Menu' })
+vim.api.nvim_set_keymap('n', '<leader>lm', ':Mason<CR>', { noremap = true, desc = 'Mason Menu' })
+
 -- You can also add relative line numbers, to help with jumping.
 --  Experiment for yourself to see if you like it!
 vim.opt.relativenumber = true
@@ -248,6 +253,8 @@ require('lazy').setup({
         ['<leader>w'] = { name = '[W]orkspace', _ = 'which_key_ignore' },
         ['<leader>t'] = { name = '[T]oggle', _ = 'which_key_ignore' },
         ['<leader>h'] = { name = 'Git [H]unk', _ = 'which_key_ignore' },
+        ['<leader>v'] = { name = '[V]isual', _ = 'which_key_ignore' },
+        ['<leader>l'] = { name = '[L]ist Menus', _ = 'which_key_ignore' },
       }
       -- visual mode
       require('which-key').register({
@@ -802,7 +809,7 @@ require('lazy').setup({
         'vim',
         'vimdoc',
         'xml',
-        'yaml'
+        'yaml',
       },
       -- Autoinstall languages that are not installed
       auto_install = true,
@@ -876,5 +883,50 @@ require('lazy').setup({
   },
 })
 
+--local swift_lsp = vim.api.nvim_create_augroup('swift_lsp', { clear = true })
+--vim.api.nvim_create_autocmd('FileType', {
+--  pattern = { 'swift' },
+--  callback = function()
+--    local root_dir = vim.fs.dirname(vim.fs.find({
+--      'Package.swift',
+--      '.git',
+--    }, { upward = true })[1])
+--    local client = vim.lsp.start {
+--      name = 'sourcekit-lsp',
+--      cmd = { 'sourcekit-lsp' },
+--      root_dir = root_dir,
+--    }
+--    vim.lsp.buf_attach_client(0, client)
+--  end,
+--  group = swift_lsp,
+--})
+
+vim.api.nvim_create_autocmd('LspAttach', {
+  group = vim.api.nvim_create_augroup('UserLspConfig', {}),
+  callback = function(ev)
+    --enable omnifunc completion
+    vim.bo[ev.buf].omnifunc = 'v:lua.vim.lsp.omnifunc'
+
+    -- go to definition
+    vim.keymap.set('n', 'gd', vim.lsp.buf.definition, { buffer = ev.buf, noremap = true, desc = 'Go to [d]efiniton' })
+    --puts doc header info into a float page
+    vim.keymap.set('n', 'K', vim.lsp.buf.hover, { buffer = ev.buf, noremap = true, desc = '[K] - doc header floating page' })
+
+    -- workspace management. Necessary for multi-module projects
+    vim.keymap.set('n', '<leader>wa', vim.lsp.buf.add_workspace_folder, { buffer = ev.buf, noremap = true, desc = '[a]dd workspace folder' })
+    vim.keymap.set('n', '<leader>wr', vim.lsp.buf.remove_workspace_folder, { buffer = ev.buf, noremap = true, desc = '[r]emove workspace folder' })
+    vim.keymap.set('n', '<leader>wl', function()
+      print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+    end, { buffer = ev.buf, noremap = true, desc = '[l]ist workspace folders' })
+
+    -- add LSP code actions
+    vim.keymap.set({ 'n', 'v' }, '<leader>ca', vim.lsp.buf.code_action, { buffer = ev.buf, noremap = true, desc = 'LSP [c]ode action' })
+
+    -- find references of a type
+    vim.keymap.set('n', 'gr', vim.lsp.buf.references, { buffer = ev.buf, noremap = true, desc = 'find [r]eference of type' })
+  end,
+})
+
+--
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
