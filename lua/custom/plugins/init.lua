@@ -36,6 +36,9 @@ return {
       lspconfig.sourcekit.setup {
         capabilities = capabilities,
       }
+      lspconfig.zls.setup {
+        capabilities = capabilities,
+      }
       --      lspconfig.ltex.setup {
       --        capabilities = capabilities,
       --      }
@@ -60,5 +63,8 @@ return {
         nerdfont = true,
       })
     end,
+  },
+  {
+    { 'akinsho/bufferline.nvim', version = '*', dependencies = 'nvim-tree/nvim-web-devicons' },
   },
 }

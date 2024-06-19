@@ -58,8 +58,8 @@ vim.opt.relativenumber = true
 vim.opt.statuscolumn = '%#NonText#%{&nu?v:lnum:""}%=%{&rnu&&(v:lnum%2)?" ".v:relnum:""}%#LineNr#%{&rnu&&!(v:lnum%2)?" ".v:relnum:""} '
 
 -- Enable mouse mode, can be useful for resizing splits for example!
--- vim.opt.mouse = 'a'
-vim.opt.mouse = ''
+vim.opt.mouse = 'a'
+-- vim.opt.mouse = ''
 
 -- Don't show the mode, since it's already in the status line
 vim.opt.showmode = false
@@ -77,6 +77,9 @@ vim.opt.termguicolors = true
 
 -- Save undo history
 vim.opt.undofile = true
+
+--  Show me what I'm typing
+vim.opt.showcmd = true
 
 -- Case-insensitive searching UNLESS \C or one or more capital letters in the search term
 vim.opt.ignorecase = true
@@ -255,6 +258,7 @@ require('lazy').setup({
         ['<leader>h'] = { name = 'Git [H]unk', _ = 'which_key_ignore' },
         ['<leader>v'] = { name = '[V]isual', _ = 'which_key_ignore' },
         ['<leader>l'] = { name = '[L]ist Menus', _ = 'which_key_ignore' },
+        ['<leader>x'] = { name = 'Trouble', _ = 'which_key_ignore' },
       }
       -- visual mode
       require('which-key').register({
