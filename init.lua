@@ -7,6 +7,17 @@ vim.g.maplocalleader = ' '
 -- Set to true if you have a Nerd Font installed and selected in the terminal
 vim.g.have_nerd_font = true
 
+-- fold
+--vim.g.foldnable = true
+--vim.g.foldmethod = 'expr'
+--vim.g.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+--vim.g.foldtext = 'v:lua.vim.treesitter.foldtext()'
+--vim.g.foldcolumn = '0'
+--vim.g.foldtext = ''
+--vim.g.foldlevel = 99
+--vim.g.foldlevelstart = 1
+--vim.g.foldnestmax = 4
+
 -- Python Virutalenvs
 -- Created by
 -- 1. brew install pyenv pyenv-virutalenv
@@ -260,6 +271,7 @@ require('lazy').setup({
         ['<leader>v'] = { name = '[V]isual', _ = 'which_key_ignore' },
         ['<leader>l'] = { name = '[L]ist Menus', _ = 'which_key_ignore' },
         ['<leader>x'] = { name = 'Trouble', _ = 'which_key_ignore' },
+        ['<leader>z'] = { name = 'Folding', _ = 'which_key_ignore' },
       }
       -- visual mode
       require('which-key').register({
