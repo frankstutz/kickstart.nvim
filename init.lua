@@ -49,6 +49,7 @@ vim.opt.number = true
 vim.api.nvim_set_keymap('n', '<leader>lp', ':LspInfo<CR>', { noremap = true, desc = 'LSP Info' })
 vim.api.nvim_set_keymap('n', '<leader>la', ':Lazy<CR>', { noremap = true, desc = 'Lazy Menu' })
 vim.api.nvim_set_keymap('n', '<leader>lm', ':Mason<CR>', { noremap = true, desc = 'Mason Menu' })
+vim.api.nvim_set_keymap('n', '<leader>ld', ':DiffviewOpen<CR>', { noremap = true, desc = 'Diff Menu' })
 
 -- You can also add relative line numbers, to help with jumping.
 --  Experiment for yourself to see if you like it!
@@ -886,24 +887,6 @@ require('lazy').setup({
     },
   },
 })
-
---local swift_lsp = vim.api.nvim_create_augroup('swift_lsp', { clear = true })
---vim.api.nvim_create_autocmd('FileType', {
---  pattern = { 'swift' },
---  callback = function()
---    local root_dir = vim.fs.dirname(vim.fs.find({
---      'Package.swift',
---      '.git',
---    }, { upward = true })[1])
---    local client = vim.lsp.start {
---      name = 'sourcekit-lsp',
---      cmd = { 'sourcekit-lsp' },
---      root_dir = root_dir,
---    }
---    vim.lsp.buf_attach_client(0, client)
---  end,
---  group = swift_lsp,
---})
 
 vim.api.nvim_create_autocmd('LspAttach', {
   group = vim.api.nvim_create_augroup('UserLspConfig', {}),
