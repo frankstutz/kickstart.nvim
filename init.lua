@@ -7,17 +7,6 @@ vim.g.maplocalleader = ' '
 -- Set to true if you have a Nerd Font installed and selected in the terminal
 vim.g.have_nerd_font = true
 
--- fold
---vim.g.foldnable = true
---vim.g.foldmethod = 'expr'
---vim.g.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
---vim.g.foldtext = 'v:lua.vim.treesitter.foldtext()'
---vim.g.foldcolumn = '0'
---vim.g.foldtext = ''
---vim.g.foldlevel = 99
---vim.g.foldlevelstart = 1
---vim.g.foldnestmax = 4
-
 -- Python Virutalenvs
 -- Created by
 -- 1. brew install pyenv pyenv-virutalenv
@@ -49,6 +38,7 @@ vim.api.nvim_set_keymap('n', '<leader>tc', ':tabclose<CR>', { noremap = true, de
 vim.api.nvim_set_keymap('n', '<leader>to', ':tabonly<CR>', { noremap = true, desc = 'Keep only this tab, remove others' })
 vim.api.nvim_set_keymap('n', '<leader>tn', ':tabn<CR>', { noremap = true, desc = 'Move to next Tab (right)' })
 vim.api.nvim_set_keymap('n', '<leader>tp', ':tabp<CR>', { noremap = true, desc = 'Move to previous tab (left)' })
+
 -- move current tab to previous position
 vim.api.nvim_set_keymap('n', '<leader>tmp', ':-tabmove<CR>', { noremap = true, desc = "Move this tab's position left" })
 -- move current tab to next position
@@ -60,7 +50,9 @@ vim.opt.number = true
 vim.api.nvim_set_keymap('n', '<leader>lp', ':LspInfo<CR>', { noremap = true, desc = 'LSP Info' })
 vim.api.nvim_set_keymap('n', '<leader>la', ':Lazy<CR>', { noremap = true, desc = 'Lazy Menu' })
 vim.api.nvim_set_keymap('n', '<leader>lm', ':Mason<CR>', { noremap = true, desc = 'Mason Menu' })
+vim.api.nvim_set_keymap('n', '<leader>lt', ':TSModuleInfo<CR>', { noremap = true, desc = 'Treesitter Module Info' })
 vim.api.nvim_set_keymap('n', '<leader>ld', ':DiffviewOpen<CR>', { noremap = true, desc = 'Diff Menu' })
+vim.keymap.set({ 'n', 'v' }, '<leader>lr', ':RepoLink<CR>', { noremap = true, desc = 'Generate HTTP permlink' })
 
 -- You can also add relative line numbers, to help with jumping.
 --  Experiment for yourself to see if you like it!
@@ -266,8 +258,10 @@ require('lazy').setup({
         ['<leader>r'] = { name = '[R]ename', _ = 'which_key_ignore' },
         ['<leader>s'] = { name = '[S]earch', _ = 'which_key_ignore' },
         ['<leader>w'] = { name = '[W]orkspace', _ = 'which_key_ignore' },
-        ['<leader>t'] = { name = '[T]oggle', _ = 'which_key_ignore' },
+        ['<leader>t'] = { name = '[T]ab', _ = 'which_key_ignore' },
+        ['<leader>tm'] = { name = 'Tab [M]ove', _ = 'which_key_ignore' },
         ['<leader>h'] = { name = 'Git [H]unk', _ = 'which_key_ignore' },
+        ['<leader>ht'] = { name = 'Git [T]oggle', _ = 'which_key_ignore' },
         ['<leader>v'] = { name = '[V]isual', _ = 'which_key_ignore' },
         ['<leader>l'] = { name = '[L]ist Menus', _ = 'which_key_ignore' },
         ['<leader>x'] = { name = 'Trouble', _ = 'which_key_ignore' },
@@ -797,6 +791,7 @@ require('lazy').setup({
       ensure_installed = {
         'bash',
         'c',
+        'cpp',
         'css',
         'diff',
         'dockerfile',
