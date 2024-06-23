@@ -11,6 +11,7 @@ return {
         ruby = { 'ruby' },
         terraform = { 'tflint' },
         text = { 'vale' },
+        -- cpp = { 'cpplint' },
         -- json = { 'jsonlint' },
         -- cpp = { 'cppcheck' },
       }

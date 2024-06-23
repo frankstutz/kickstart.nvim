@@ -47,12 +47,12 @@ vim.api.nvim_set_keymap('n', '<leader>tmn', ':+tabmove<CR>', { noremap = true, d
 vim.opt.number = true
 
 -- List Menus
-vim.api.nvim_set_keymap('n', '<leader>lp', ':LspInfo<CR>', { noremap = true, desc = 'LSP Info' })
-vim.api.nvim_set_keymap('n', '<leader>la', ':Lazy<CR>', { noremap = true, desc = 'Lazy Menu' })
-vim.api.nvim_set_keymap('n', '<leader>lm', ':Mason<CR>', { noremap = true, desc = 'Mason Menu' })
-vim.api.nvim_set_keymap('n', '<leader>lt', ':TSModuleInfo<CR>', { noremap = true, desc = 'Treesitter Module Info' })
-vim.api.nvim_set_keymap('n', '<leader>ld', ':DiffviewOpen<CR>', { noremap = true, desc = 'Diff Menu' })
-vim.keymap.set({ 'n', 'v' }, '<leader>lr', ':RepoLink<CR>', { noremap = true, desc = 'Generate HTTP permlink' })
+vim.api.nvim_set_keymap('n', '<leader>lp', ':LspInfo<CR>', { noremap = true, desc = 'LSP Info', silent = true })
+vim.api.nvim_set_keymap('n', '<leader>la', ':Lazy<CR>', { noremap = true, desc = 'Lazy Menu', silent = true })
+vim.api.nvim_set_keymap('n', '<leader>lm', ':Mason<CR>', { noremap = true, desc = 'Mason Menu', silent = true })
+vim.api.nvim_set_keymap('n', '<leader>lt', ':TSModuleInfo<CR>', { noremap = true, desc = 'Treesitter Module Info', silent = true })
+vim.api.nvim_set_keymap('n', '<leader>ld', ':DiffviewOpen<CR>', { noremap = true, desc = 'Diff Menu', silent = true })
+vim.keymap.set({ 'n', 'v' }, '<leader>lr', ':RepoLink<CR>', { noremap = true, desc = 'Generate HTTP permlink', silent = true })
 
 -- You can also add relative line numbers, to help with jumping.
 --  Experiment for yourself to see if you like it!
