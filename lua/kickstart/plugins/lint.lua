@@ -10,10 +10,7 @@ return {
         dockerfile = { 'hadolint' },
         ruby = { 'ruby' },
         terraform = { 'tflint' },
-        text = { 'vale' },
-        -- cpp = { 'cpplint' },
-        -- json = { 'jsonlint' },
-        -- cpp = { 'cppcheck' },
+        text = { 'vale' }
       }
 
       -- To allow other plugins to add linters to require('lint').linters_by_ft,

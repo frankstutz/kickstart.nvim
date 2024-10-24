@@ -38,7 +38,6 @@ vim.api.nvim_set_keymap('n', '<leader>tc', ':tabclose<CR>', { noremap = true, de
 vim.api.nvim_set_keymap('n', '<leader>to', ':tabonly<CR>', { noremap = true, desc = 'Keep only this tab, remove others' })
 vim.api.nvim_set_keymap('n', '<leader>tn', ':tabn<CR>', { noremap = true, desc = 'Move to next Tab (right)' })
 vim.api.nvim_set_keymap('n', '<leader>tp', ':tabp<CR>', { noremap = true, desc = 'Move to previous tab (left)' })
-
 -- move current tab to previous position
 vim.api.nvim_set_keymap('n', '<leader>tmp', ':-tabmove<CR>', { noremap = true, desc = "Move this tab's position left" })
 -- move current tab to next position
@@ -873,7 +872,7 @@ require('lazy').setup({
         'vim',
         'vimdoc',
         'xml',
-        'yaml',
+        'yaml'
       },
       -- Autoinstall languages that are not installed
       auto_install = true,
