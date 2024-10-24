@@ -33,25 +33,8 @@ end
 --  For more options, you can see `:help option-list`
 --
 vim.opt.showtabline = 2
-vim.api.nvim_set_keymap('n', '<leader>ta', ':$tabnew<CR>', { noremap = true, desc = 'Create a new Tab' })
-vim.api.nvim_set_keymap('n', '<leader>tc', ':tabclose<CR>', { noremap = true, desc = 'Close Tab' })
-vim.api.nvim_set_keymap('n', '<leader>to', ':tabonly<CR>', { noremap = true, desc = 'Keep only this tab, remove others' })
-vim.api.nvim_set_keymap('n', '<leader>tn', ':tabn<CR>', { noremap = true, desc = 'Move to next Tab (right)' })
-vim.api.nvim_set_keymap('n', '<leader>tp', ':tabp<CR>', { noremap = true, desc = 'Move to previous tab (left)' })
--- move current tab to previous position
-vim.api.nvim_set_keymap('n', '<leader>tmp', ':-tabmove<CR>', { noremap = true, desc = "Move this tab's position left" })
--- move current tab to next position
-vim.api.nvim_set_keymap('n', '<leader>tmn', ':+tabmove<CR>', { noremap = true, desc = "Move this tab's position right" })
 -- Make line numbers default
 vim.opt.number = true
-
--- List Menus
-vim.api.nvim_set_keymap('n', '<leader>lp', ':LspInfo<CR>', { noremap = true, desc = 'LSP Info', silent = true })
-vim.api.nvim_set_keymap('n', '<leader>la', ':Lazy<CR>', { noremap = true, desc = 'Lazy Menu', silent = true })
-vim.api.nvim_set_keymap('n', '<leader>lm', ':Mason<CR>', { noremap = true, desc = 'Mason Menu', silent = true })
-vim.api.nvim_set_keymap('n', '<leader>lt', ':TSModuleInfo<CR>', { noremap = true, desc = 'Treesitter Module Info', silent = true })
-vim.api.nvim_set_keymap('n', '<leader>ld', ':DiffviewOpen<CR>', { noremap = true, desc = 'Diff Menu', silent = true })
-vim.keymap.set({ 'n', 'v' }, '<leader>lr', ':RepoLink<CR>', { noremap = true, desc = 'Generate HTTP permlink', silent = true })
 
 -- You can also add relative line numbers, to help with jumping.
 --  Experiment for yourself to see if you like it!
@@ -281,23 +264,46 @@ require('lazy').setup({
           F11 = '<F11>',
           F12 = '<F12>',
         },
-        -- Document existing key chains
-        spec = {
-          { '<leader>c', group = '[C]ode', mode = { 'n', 'x' } },
-          { '<leader>d', group = '[D]ocument' },
-          { '<leader>r', group = '[R]ename' },
-          { '<leader>s', group = '[S]earch' },
-          { '<leader>w', group = '[W]orkspace' },
-          { '<leader>t', group = '[T]ab' },
-          { '<leader>tm', group = '[T]ab [M]ove' },
-          { '<leader>h', group = 'Git [H]unk', mode = { 'n', 'v' } },
-          { '<leader>gt', group = '[G]it [T]oggle' },
-          { '<leader>v', group = '[V]isual', mode = { 'n', 'v' } },
-          { '<leader>l', group = '[L]ist Menus' },
-          { '<leader>x', group = 'x - Trouble' },
-          { '<leader>z', group = 'z - Folding' },
-        },
       },
+      -- Document existing key chains
+      spec = {
+        { '<leader>c', group = '[C]ode', mode = { 'n', 'x' } },
+        { '<leader>d', group = '[D]ocument' },
+        { '<leader>r', group = '[R]ename' },
+        { '<leader>s', group = '[S]earch' },
+        { '<leader>w', group = '[W]orkspace' },
+        { '<leader>t', group = '[T]ab' },
+        { '<leader>h', group = 'Git [H]unk', mode = { 'n', 'v' } },
+        { '<leader>gt', group = '[G]it [T]oggle' },
+        { '<leader>v', group = '[V]isual', mode = { 'n', 'v' } },
+        { '<leader>l', group = '[L]ist Menu' },
+        { '<leader>x', group = 'Trouble' },
+        { '<leader>z', group = 'Folding' },
+      },
+    },
+    keys = {
+      {
+        '<leader>?',
+        function()
+          require('which-key').show { global = false }
+        end,
+        desc = 'Buffer Local Keymaps (which-key)',
+      },
+      -- List Menu
+      { '<leader>lp', '<cmd>LspInfo<cr>', desc = 'LSP Info' },
+      { '<leader>la', '<cmd>Lazy<cr>', desc = 'Lazy Menu' },
+      { '<leader>lm', '<cmd>Mason<cr>', desc = 'Mason Menu' },
+      { '<leader>lt', '<cmd>TSModuleInfo<cr>', desc = 'Treesitter Module Info' },
+      { '<leader>ld', '<cmd>DiffviewOpen<cr>', desc = 'Diff Menu' },
+      { '<leader>lf', '<cmd>RepoLink<cr>', desc = 'Generate HTTP permlink' },
+      -- Tabs
+      { '<leader>ta', '<cmd>$tabnewcr>', desc = 'Create a new tab' },
+      { '<leader>tc', '<cmd>tabclose<cr>', desc = 'Close tab' },
+      { '<leader>to', '<cmd>tabonly<cr>', desc = 'Keep inly this tab, remove others' },
+      { '<leader>tn', '<cmd>tabn<cr>', desc = 'Move to next tab (right)' },
+      { '<leader>tp', '<cmd>tabp<cr>', desc = 'Move to previous tab (left)' },
+      { '<leader>t+', '<cmd>+tabmove<cr>', desc = "Move this tab's position right" },
+      { '<leader>t-', '<cmd>-tabmove<cr>', desc = "Move this tab's position left" },
     },
   },
 
