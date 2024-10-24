@@ -872,7 +872,7 @@ require('lazy').setup({
         'vim',
         'vimdoc',
         'xml',
-        'yaml'
+        'yaml',
       },
       -- Autoinstall languages that are not installed
       auto_install = true,

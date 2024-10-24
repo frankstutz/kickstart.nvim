@@ -34,9 +34,9 @@ return {
       lspconfig.perlpls.setup {
         capabilities = capabilities,
       }
-      --      lspconfig.ltex.setup {
-      --        capabilities = capabilities,
-      --      }
+      lspconfig.sourcekit.setup {
+        capabilities = capabilities,
+      }
       lspconfig.ltex.setup {
         settings = {
           ltex = {
