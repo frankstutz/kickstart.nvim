@@ -267,10 +267,6 @@ require('lazy').setup({
         ['<leader>x'] = { name = 'Trouble', _ = 'which_key_ignore' },
         ['<leader>z'] = { name = 'Folding', _ = 'which_key_ignore' },
       }
-      -- visual mode
-      require('which-key').register({
-        ['<leader>h'] = { 'Git [H]unk' },
-      }, { mode = 'v' })
     end,
   },
 
